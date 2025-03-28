@@ -8,6 +8,8 @@ interface CitizenProfileProps {
 }
 
 export function CitizenProfile({ citizen, onBack }: CitizenProfileProps) {
+  if (!citizen) return <p>No citizen selected</p>;
+
   return (
     <div className="bg-white shadow overflow-hidden sm:rounded-lg">
       <div className="px-4 py-5 sm:px-6">
@@ -24,41 +26,21 @@ export function CitizenProfile({ citizen, onBack }: CitizenProfileProps) {
       </div>
       <div className="border-t border-gray-200">
         <dl>
-          <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3">
             <dt className="text-sm font-medium text-gray-500">Full Name</dt>
-            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{citizen.full_name}</dd>
+            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{citizen.full_name}</dd>
           </div>
-          <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3">
             <dt className="text-sm font-medium text-gray-500">MyKad Number</dt>
-            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{citizen.mykad_number}</dd>
+            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{citizen.mykad_number}</dd>
           </div>
-          <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt className="text-sm font-medium text-gray-500">Phone Number</dt>
-            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{citizen.phone_number}</dd>
+          <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3">
+            <dt className="text-sm font-medium text-gray-500">Phone</dt>
+            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{citizen.phone_number}</dd>
           </div>
-          <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt className="text-sm font-medium text-gray-500">Email Address</dt>
-            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{citizen.email}</dd>
-          </div>
-          <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt className="text-sm font-medium text-gray-500">Address</dt>
-            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{citizen.address}</dd>
-          </div>
-          <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt className="text-sm font-medium text-gray-500">Employment Status</dt>
-            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{citizen.employment_status}</dd>
-          </div>
-          <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt className="text-sm font-medium text-gray-500">Monthly Income</dt>
-            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">RM {citizen.monthly_income.toLocaleString()}</dd>
-          </div>
-          <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt className="text-sm font-medium text-gray-500">Government Assistance</dt>
-            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{citizen.government_assistance ? 'Yes' : 'No'}</dd>
-          </div>
-          <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt className="text-sm font-medium text-gray-500">Wallet Address</dt>
-            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{citizen.wallet_address}</dd>
+          <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3">
+            <dt className="text-sm font-medium text-gray-500">Wallet</dt>
+            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">{citizen.wallet_address}</dd>
           </div>
         </dl>
       </div>

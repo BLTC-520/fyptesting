@@ -1,21 +1,26 @@
 import React from 'react';
-import { Building2 } from 'lucide-react';
+import { supabase } from '../supabaseClient';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Link
+} from 'react-router-dom';
 
-export function Navbar() {
+export const Navbar = () => {
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+    // Optionally redirect to the auth page
+  };
+
   return (
-    <nav className="bg-blue-900 text-white shadow-lg">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex items-center">
-            <Building2 className="h-8 w-8" />
-            <span className="ml-2 text-xl font-semibold">PADU Portal</span>
-          </div>
-          <div className="flex space-x-4">
-            <a href="/" className="hover:bg-blue-800 px-3 py-2 rounded-md">Home</a>
-            <a href="/citizens" className="hover:bg-blue-800 px-3 py-2 rounded-md">View Citizens</a>
-          </div>
-        </div>
+    <nav className="bg-blue-800 p-4 text-white">
+      <div className="container mx-auto flex items-center justify-between">
+        <Link to="/" className="text-lg font-semibold">Citizen Management</Link>
+        <button onClick={handleSignOut} className="bg-blue-600 hover:bg-blue-700 py-2 px-4 rounded">
+          Sign Out
+        </button>
       </div>
     </nav>
   );
-}
+};

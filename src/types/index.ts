@@ -13,12 +13,3 @@ export interface Citizen {
   created_at: string;
   updated_at: string;
 }
-
-export const EMPLOYMENT_STATUS = [
-  'Employed',
-  'Unemployed',
-  'Student',
-  'Retired'
-] as const;
-
-export type EmploymentStatus = typeof EMPLOYMENT_STATUS[number];
