@@ -15,6 +15,8 @@ export function CitizenForm({ onSubmit, isSubmitting }: CitizenFormProps) {
     address: '',
     employment_status: '',
     monthly_income: 0,
+    household_size: 0,
+    total_household_income: 0,
     government_assistance: false,
     wallet_address: '',
   });
@@ -31,6 +33,20 @@ export function CitizenForm({ onSubmit, isSubmitting }: CitizenFormProps) {
     e.preventDefault();
     await onSubmit(formData);
   };
+
+  const handleExport = () => {
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(formData, null, 2));
+    const downloadAnchorNode = document.createElement('a');
+    downloadAnchorNode.setAttribute("href", dataStr);
+    downloadAnchorNode.setAttribute("download", "citizen_data.json");
+    document.body.appendChild(downloadAnchorNode); // required for firefox
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();
+  };
+  
+
+
+
 
   return (
     <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
@@ -159,6 +175,36 @@ export function CitizenForm({ onSubmit, isSubmitting }: CitizenFormProps) {
           />
         </div>
         <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="household_size">
+            Household Size
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="household_size"
+            name="household_size"
+            type="number"
+            placeholder="Household Size"
+            value={formData.household_size}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="total_household_income">
+            Total Household Income
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="total_household_income"
+            name="total_household_income"
+            type="number"
+            placeholder="Total Household Income"
+            value={formData.total_household_income}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="government_assistance">
             Government Assistance
           </label>
@@ -194,6 +240,13 @@ export function CitizenForm({ onSubmit, isSubmitting }: CitizenFormProps) {
             disabled={isSubmitting}
           >
             {isSubmitting ? 'Submitting...' : 'Register'}
+          </button>
+          <button
+            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-4"
+            type="button"
+            onClick={handleExport}
+          >
+            Export
           </button>
         </div>
       </form>

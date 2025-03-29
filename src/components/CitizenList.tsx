@@ -6,9 +6,36 @@ interface CitizenListProps {
   onViewDetails: (citizen: Citizen) => void;
 }
 
+
 export function CitizenList({ citizens, onViewDetails }: CitizenListProps) {
+  const downloadCitizenData = () => {
+    const dataToExport = citizens.map(citizen => ({
+      mykad_number: citizen.mykad_number,
+      household_size: citizen.household_size,
+      total_household_income: citizen.total_household_income,
+      wallet_address: citizen.wallet_address,
+      monthly_income: citizen.monthly_income,
+      employment_status: citizen.employment_status,
+      government_assistance: citizen.government_assistance,
+    }));
+    
+    const jsonString = JSON.stringify(dataToExport, null, 2);
+    const blob = new Blob([jsonString], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'citizens.json';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
   return (
-    <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+    <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg relative">
+      <div className="flex justify-end mb-4">
+          <button onClick={downloadCitizenData} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded absolute top-0 right-0 mt-4 mr-4">Export All</button>
+      </div>
       <table className="min-w-full divide-y divide-gray-200">
         <thead className="bg-gray-50">
           <tr>
