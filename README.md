@@ -3,48 +3,6 @@
 ## Overview / 项目概述
 This project is designed to streamline the subsidy application process by automating eligibility checks with AI and distributing funds via a blockchain smart contract on Sepolia. The system is built with a modern frontend (using Bolt.new), Supabase as the backend database, and smart contracts to handle DAI transfers in a gasless fashion.
 
-## 系统架构 | System Architecture
-
-```mermaid
-flowchart TD
-    %% Citizen Application Flow
-    A1[Citizen submits application via Frontend - Bolt.new] 
-    A2[Application data including ERC-20 wallet address is sent to backend API]
-    A3[Data is stored in Supabase - PostgreSQL]
-    
-    %% Eligibility Processing Flow
-    B1[AI Processing Module - Jupyter Notebook]
-    B2[Convert Supabase data to JSON and load into DataFrame]
-    B3[Calculate eligibility score using rules/ML models]
-    B4[Classify subsidy eligibility tier]
-    
-    %% Admin Review and Final Approval
-    C1[Admin Dashboard displays processed results]
-    C2[Admin reviews and confirms eligible citizens]
-    
-    %% Blockchain Fund Distribution Flow
-    D1[Government funds Smart Contract - Vault on Sepolia with DAI]
-    D2[Smart Contract holds funds; built and deployed using Foundry]
-    D3[Eligible citizen details with ERC-20 addresses are fetched]
-    D4[Meta-transaction Relayer - Gasless mechanism initiates transfer]
-    D5[Smart Contract sends DAI to eligible citizens - ERC-20 wallets]
-    
-    %% Interconnections
-    A1 --> A2
-    A2 --> A3
-    A3 --> B1
-    B1 --> B2
-    B2 --> B3
-    B3 --> B4
-    B4 --> C1
-    C1 --> C2
-    C2 --> D3
-    D1 --> D2
-    D2 --> D4
-    D4 --> D5
-    D3 --> D4
-```
-
 ## 技术栈 | Technology Stack
 
 ### 前端 (Frontend)
