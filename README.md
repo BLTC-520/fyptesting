@@ -75,8 +75,7 @@ flowchart TD
 
 ## Architecture / 架构概述
 
-![fyp](https://github.com/user-attachments/assets/035780f1-f608-4605-8e27-77e0a6af89b3)
-
+![fypdraft](https://github.com/user-attachments/assets/33cbb4bf-da94-42c2-93b6-d03f7ae6dd45)
 
 1. **Frontend & Data Submission / 前端与数据提交**
    - **Citizen Application Form:** Citizens submit their personal details including MyKad, contact info, and their ERC-20 wallet address.
